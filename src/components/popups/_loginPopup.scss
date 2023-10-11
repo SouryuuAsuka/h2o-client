@@ -1,0 +1,99 @@
+.loginPopup {
+  &__background {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    background-color: #00000084;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__container {
+    max-width: 600px;
+    min-width: 300px;
+    max-height: 800px;
+    border-radius: 15px;
+    border: var(--border) solid 1px;
+    background-color: var(--background);
+  }
+
+  &__header {
+    padding: 10px 10px;
+    border-bottom: var(--border) solid 1px;
+
+    &_tittle {
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    border-bottom: var(--border) solid 1px;
+
+    &_item {
+      width: 50%;
+      padding: 10px 0;
+      text-align: center;
+      color: var(--element-text);
+
+      &:hover {
+        background-color: var(--background-preselected);
+        cursor: pointer;
+      }
+
+      &.active {
+        background-color: var(--element-active);
+        color: var(--element-text-light);
+      }
+    }
+  }
+
+  &__body {
+    padding: 15px;
+
+    &_error {
+      color: var(--element-text);
+      text-align: center;
+      padding: 5px 10pxa;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+
+    &_input {
+      margin: 10px 0;
+
+      input {
+        border-radius: 20px;
+        width: -webkit-fill-available;
+        height: 10px;
+        padding: 15px;
+        outline: var(--border) solid 1px;
+        
+        &:focus-visible{
+          outline: var(--element-active) solid 1px;
+        }
+      }
+
+      &_text {
+        margin-bottom: 5px;
+        color: var(--element-text)
+      }
+    }
+
+    button {
+      border: none;
+      background-color: var(--element-active);
+      padding: 15px 10px;
+      margin: 20px -15px -15px;
+      border-radius: 0 0 15px 15px;
+      color: var(--element-text-light) ;
+    }
+  }
+}
