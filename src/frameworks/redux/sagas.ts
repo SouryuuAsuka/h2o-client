@@ -19,13 +19,15 @@ const setAppLoading = () => {
 const setAppNotLoading = () => {
   return { type: 'SET_APP_NOT_LOADING' }
 };
-const setAppReady = () => {
-  return { type: 'SET_APP_READY' }
+
+export const showPopupLogin = () => {
+  return { type: 'SHOW_POPUP_LOGIN' }
 };
 
-const setAppNotReady = () => {
-  return { type: 'SET_APP_NOT_READY' }
+export const hidePopupLogin = () => {
+  return { type: 'HIDE_POPUP_LOGIN' }
 };
+
 export const setUser = (data: any) => {
   return { type: 'SET_USER', user: data }
 }
@@ -39,16 +41,21 @@ export function* watchGetUser(): any {
 };
 
 export function* getUserAsync(): any {
-  const response: any = yield call(Api.get, '/users', { headers: { Authorization: 'Bearer ' + localStorage.getItem('accessToken') } });
-  const data = response?.data?.data?.user;
-  const user = {
-    id: data.user_id ?? 1,
-    name: data.username ?? null,
-    avatar: data.avatar ?? null,
-    isLogin: true
+  try {
+    const response: any = yield call(Api.get, '/users', { headers: { Authorization: 'Bearer ' + localStorage.getItem('accessToken') } });
+    const data = response?.data?.data?.user;
+    const user = {
+      id: data.user_id ?? 1,
+      name: data.username ?? null,
+      avatar: data.avatar ?? null,
+      isLogin: true
+    }
+    yield put(setUser(user));
+  } catch {
+    
+  } finally {
+    yield put(setAppNotLoading());
   }
-  yield put(setUser(user));
-  yield put(setAppNotLoading());
 
 };
 

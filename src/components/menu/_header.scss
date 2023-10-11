@@ -76,7 +76,7 @@ label:active:after {
         border-bottom: var(--border) solid 1px;
         background-color: var(--background-input);
         &:focus-visible {
-          outline: var(--element-active) solid 1px;
+          outline: var(--background-primary) solid 1px;
         }
       }
     }

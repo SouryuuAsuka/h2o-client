@@ -66,11 +66,11 @@ export function LoginPopup() {
             {signUp ? 'Регистрация' : 'Вход'}
           </div>
         </div>
-        <div className='loginPopup__buttons'>
-          <div className={'loginPopup__buttons_item ' + (signUp ? '' : 'active')} onClick={() => { setSignUp(false) }}>
+        <div className='loginPopup__buttons '>
+          <div className={'loginPopup__buttons_item btn ' + (signUp ? '' : 'active')} onClick={() => { setSignUp(false) }}>
             Вход
           </div>
-          <div className={'loginPopup__buttons_item ' + (signUp ? 'active' : '')} onClick={() => { setSignUp(true) }}>
+          <div className={'loginPopup__buttons_item btn ' + (signUp ? 'active' : '')} onClick={() => { setSignUp(true) }}>
             Регистрация
           </div>
         </div>
@@ -113,7 +113,7 @@ export function LoginPopup() {
                   </div>
                   <input type="password" onChange={e => setPassword(e.target.value)} />
                 </div>
-                <button type="submit">
+                <button className="btn active" type="submit">
                   Войти
                 </button>
               </form>

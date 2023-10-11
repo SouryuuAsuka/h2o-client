@@ -1,13 +1,16 @@
 body {
+  --background-primary: #30898a;
+  --background-primary-hovered: #4ca8aa;
+  --background-gradient: linear-gradient(180deg, #54D3C2 0%, #30898A 100%);
+}
+
+body.light {
   --background: #ffffff;
-  --background-card: #fbfcff;
-  --background-hovered: #f7f8f9;
   --background-input: #fbfbfb;
   --background-nav: #dcdcdc;
-  --background-selected: #3f3f7a;
-  --background-preselected: #d6d6e4;
-  --element-active: #2283bb;
-  --element-secondary: #7b909d;
+  --background-secondary: #9dcdce;
+  --background-secondary-hovered: #d6d6e4;
+  --element-active: #30898a;
   --element-text: #000;
   --element-text-secondary: #444444;
   --element-text-light: #fff;
@@ -17,14 +20,11 @@ body {
 
 body.dark {
   --background: #282A37;
-  --background-card: #343141;
-  --background-hovered: #393939;
   --background-input: #2e3039;
   --background-nav: #2c2d38;
-  --background-selected: #3f3f7a;
-  --background-preselected: #d6d6e4;
-  --element-active: #2283bb;
-  --element-secondary: #7b909d;
+  --background-secondary: #224040;
+  --background-secondary-hovered: #305252;
+  --element-active: #30898a;
   --element-text: #ffffff;
   --element-text-secondary: #444444;
   --element-text-light: #fff;
@@ -68,4 +68,41 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+input {
+  border-radius: 20px;
+  width: -webkit-fill-available;
+  height: 10px;
+  padding: 15px;
+  outline: var(--border) solid 1px;
+  background-color: var(--background-input);
+  &:focus-visible{
+    outline: var(--element-active) solid 1px;
+  }
+}
+button{
+  border: none;
+}
+.btn{
+  border: none;
+  background-color: var(--background-secondary);
+  padding: 15px 10px;
+  text-align: center;
+  color: var(--element-text-light) ;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--background-secondary-hovered);
+    cursor: pointer;
+  }
+
+  &.active {
+    background-color: var(--background-primary);
+    color: var(--element-text-light);
+    &:hover {
+      background-color: var(--background-primary-hovered);
+      cursor: pointer;
+    }
+  }
 }
