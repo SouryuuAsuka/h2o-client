@@ -40,8 +40,8 @@ export default function Panel() {
         <div className={'panel__button_item ' + (path === 'settings' ? 'active' : '')} onClick={() => navigate('/settings')}>
           <img src={settingsIcon} alt='settings' />
         </div>
-        <div className={'panel__button_item ' + (path === 'archive' ? 'active' : '')} onClick={() => navigate('/archive')}>
-          <img src={statisticIcon} alt='archive' />
+        <div className={'panel__button_item ' + (path === 'statistic' ? 'active' : '')} onClick={() => navigate('/statistic')}>
+          <img src={statisticIcon} alt='statistic' />
         </div>
       </div>
     </div>

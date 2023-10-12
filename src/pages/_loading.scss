@@ -5,7 +5,8 @@
   z-index: 1000;
   background-color: var(--background);
   display: flex;
-
+  justify-content: center;
+  align-items: center;
 
   &__container {
     position: relative;
@@ -25,10 +26,10 @@
       width: 64px;
       height: 64px;
       margin: 8px;
-      border: 8px solid #fff;
+      border: 8px solid var(--element-active);
       border-radius: 50%;
       animation: spinner-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-      border-color: #fff transparent transparent transparent;
+      border-color: var(--element-active) transparent transparent transparent;
       &:nth-child(1) {
         animation-delay: -0.45s;
       }

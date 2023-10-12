@@ -5,8 +5,10 @@ export default function EmptyIndex() {
   return (
     <main>
       <Header />
-      <div className="">
-        <Empty />
+      <div className="main">
+        <div className="main__container">
+          <Empty />
+        </div>  
       </div>
     </main>
   )

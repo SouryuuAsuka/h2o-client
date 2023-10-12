@@ -57,7 +57,7 @@ function App() {
           element: <EmptyIndex />,
         },
         {
-          path: "/archive",
+          path: "/statistic",
           element: <EmptyIndex />,
         }
       ]

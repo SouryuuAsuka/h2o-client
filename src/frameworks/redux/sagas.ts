@@ -72,7 +72,7 @@ function* watchGetTransactions(): any {
 }
 export function* getDataAsync(action: any): any {
   console.log(JSON.stringify(action));
-  const response: any = yield call(Api.get, '/transactions/', { headers: { Authorization: 'Bearer ' + localStorage.getItem('accessToken') } });
+  const response: any = yield call(Api.get, '/transactions?i='+action.interval, { headers: { Authorization: 'Bearer ' + localStorage.getItem('accessToken') } });
   const data = response?.data?.data;
   yield put(setTransactions(data));
 }

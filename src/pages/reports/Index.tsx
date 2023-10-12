@@ -28,8 +28,8 @@ export default function ReportsIndex() {
     <main>
       <Header navs={nav} />
       <div className="main">
-      <div className="main__container">
-        <Outlet />
+        <div className="main__container">
+          <Outlet />
         </div>
       </div>
     </main>
