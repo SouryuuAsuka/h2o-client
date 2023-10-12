@@ -2,7 +2,7 @@
 interface Popups {
   login: boolean;
 }
-interface AppState {
+export interface AppState {
   loading: boolean | null;
   popups: Popups;
   search: string;

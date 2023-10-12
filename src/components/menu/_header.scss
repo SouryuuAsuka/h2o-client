@@ -42,6 +42,16 @@ label:active:after {
   width: 20px;
 }
 
+header {
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-between;
+  height: 120px;
+  align-items: center;
+  margin-bottom: -20px;
+  padding-bottom: 20px;
+}
+
 .header {
   &__brand {
     &_text {
@@ -51,53 +61,71 @@ label:active:after {
     }
   }
 
-  &__panel {
+  &_theme {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    margin-right: 10px;
+  }
 
-    &_theme {
+  &__profile {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    padding: 3px 0;
+
+    &_name {
       display: flex;
-      flex-direction: row;
       align-items: center;
-      margin-right: 10px;
+      margin: 0 10px;
     }
 
-    &_search {
-      display: flex;
-      align-items: center;
+    &_img {
+      height: 100%;
 
-      input {
-        border-radius: 20px;
-        width: -webkit-fill-available;
-        height: 10px;
-        margin: 5px 10px;
-        padding: 10px 15px;
-        outline: var(--border) solid 1px;
-        border-bottom: var(--border) solid 1px;
-        background-color: var(--background-input);
-        &:focus-visible {
-          outline: var(--background-primary) solid 1px;
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+
+    &_controller {
+      display: flex;
+      height: fit-content;
+
+      &_item {
+        box-shadow: 0px 4px 18px 0px #D2D1D180;
+        padding: 10px;
+        margin: 7px;
+        border-radius: 50%;
+
+        img {
+          padding: 0 7px 0 3px;
+
+        }
+
+        &.right {
+          img {
+            transform: rotate(180deg);
+          }
         }
       }
     }
 
-    &_profile {
-      height: 40px;
+    &_panel {
       display: flex;
-      flex-direction: row;
-      padding: 3px 0;
+      align-items: center;
+      overflow-x: scroll;
 
-      &_name {
-        display: flex;
-        align-items: center;
+      &_item {
         margin: 0 10px;
-      }
+        color: var(--element-text-secondary);
 
-      &_img {
-        height: 100%;
-
-        img {
-          height: 100%;
+        &.active {
+          color: var(--element-text);
         }
       }
     }

@@ -1,47 +1,73 @@
 import { useEffect } from 'react';
-
-import Main from './components/pages/Main';
 import {
   BrowserRouter,
-  Route,
-  Routes,
+  RouterProvider,
+  createBrowserRouter,
 } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { getUser, showPopupLogin } from './frameworks/redux/sagas';
-import Panel from './components/menu/Panel';
-import { useAppSelector } from './hooks';
-import { LoginPopup } from './components';
+
+import ReportsIndex from '@/pages/reports/Index';
+import ReportsCompany from '@/pages/reports/Company';
+import Container from './pages/Container';
+import EmptyIndex from './pages/empty/Index';
+import Empty from './pages/empty/Empty';
 
 function App() {
-  const dispatch = useDispatch()
-  const app = useAppSelector((state) => state.app);
-  const isLogin = useAppSelector((state) => state.user.isLogin);
 
-  useEffect(() => {
-    dispatch(getUser())
-    const theme = window.localStorage.getItem('theme');
-    if (theme == 'dark') {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.add('light');
+  const router = createBrowserRouter([
+    {
+      path: "",
+      element: <Container />,
+      children: [
+        {
+          path: "/reports",
+          element: <ReportsIndex />,
+          children: [
+            {
+              path: "company",
+              element: <ReportsCompany />
+            },
+            {
+              path: "deals",
+              element: <Empty />
+            },
+            {
+              path: "workers",
+              element: <Empty />
+            }
+          ]
+        },
+        {
+          path: "/archive",
+          element: <EmptyIndex />,
+        },
+        {
+          path: "/calendar",
+          element: <EmptyIndex />,
+        },
+        {
+          path: "/database",
+          element: <EmptyIndex />,
+        },
+        {
+          path: "/persons",
+          element: <EmptyIndex />,
+        },
+        {
+          path: "/settings",
+          element: <EmptyIndex />,
+        },
+        {
+          path: "/archive",
+          element: <EmptyIndex />,
+        }
+      ]
     }
-  }, [])
-  useEffect(() => {
-    console.log("isLogin - "+isLogin)
-    console.log("app.loading - "+app.loading)
-    if(!isLogin && !app.loading){
-      dispatch(showPopupLogin())
-    }
-  }, [isLogin, app.loading])
+  ]);
 
   return (
-    <BrowserRouter>
-      <Panel />
-      {app.popups.login && <LoginPopup/>}
-      <Routes>
-        <Route path="/" element={<Main />} />
-      </Routes>
-    </BrowserRouter>
+    <>
+      <RouterProvider router={router} />
+    </>
   )
 }
 export default App;

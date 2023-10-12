@@ -1,6 +1,6 @@
-import { Transaction } from "../../../interfaces";
+import { Transaction } from "../../../types";
 
-interface DataState {
+export interface DataState {
   transactions: Transaction[];
 }
 

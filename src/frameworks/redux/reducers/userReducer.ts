@@ -1,4 +1,4 @@
-interface UserState {
+export interface UserState {
   id: number | null,
   name: string | null,
   avatar: number;
