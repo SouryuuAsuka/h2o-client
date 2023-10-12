@@ -52,7 +52,7 @@ export function Header({ navs = null }: Props) {
 
       <div className="header__profile">
         <div className="header__theme">
-          <input type="checkbox" id="switch" onChange={handleChange} /><label htmlFor="switch">Toggle</label>
+          <input type="checkbox" id="switch" defaultChecked={window.localStorage.getItem('theme')==='light'} onChange={handleChange} /><label htmlFor="switch">Toggle</label>
         </div>
         <div className="header__profile_img">
           <img src={process.env.PUBLIC_URL + '/avatars/128/128_' + user.avatar + '.png'} />
