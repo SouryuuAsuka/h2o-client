@@ -421,19 +421,18 @@ button {
 }
 
 main {
-  width: 100%;
-  min-height: 100%;
+  height: 100vh;
   background-color: var(--background);
   border-radius: 40px 0 0 40px;
+  width: calc(100% - 120px);
 }
 
 .main {
   width: 100%;
   background-color: var(--background-element);
-  height: calc(100% - 120px);
-  border-radius: 40px 40px 0 0;
-  height: calc(100% - 225px);
+  border-radius: 40px 40px 0 40px;
   overflow-y: scroll;
+  height: calc(100% - 120px);
 }
 .main__container {
   padding: 40px 0;
@@ -457,6 +456,7 @@ main {
 #root {
   display: flex;
   flex-direction: row;
+  width: 100vw;
 }
 
 .btn {
