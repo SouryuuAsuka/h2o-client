@@ -1,3 +1,79 @@
-.line{
+.company {
+  &__chart {
+    min-height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
+  &__summary {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0;
+
+    &>div {
+      width: 100%;
+      margin: 0 20px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    &_body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 10px 0;
+    }
+
+    &_stat {
+      width: 50%;
+      padding: 10px;
+      border-radius: 40px;
+      text-align: center;
+      margin-bottom: 10px;
+      background: #FC5C6526;
+    }
+
+    &_sum {
+      font-size: 30px;
+      margin: 10px 0;
+    }
+
+    &_subtitle {
+      font-size: 16px;
+    }
+  }
+}
+
+.card {
+  &.fail {
+    .company__summary_stat {
+      background: #FC5C6526;
+    }
+  }
+
+  &.success {
+    .company__summary_stat {
+      background: #54d3c226;
+    }
+  }
+}
+.card.active {
+  &.fail {
+    .company__summary_stat {
+      background: #ff858b;
+    }
+  }
+
+  &.success {
+    .company__summary_stat {
+      background: #F8F8F840;
+    }
+  }
 }

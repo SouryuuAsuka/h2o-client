@@ -1,11 +1,36 @@
 import { Transaction } from "../../../types";
 
 export interface DataState {
+  loading: {
+    transactions: boolean,
+    stats: boolean
+  };
+  stats: {
+    client: Stats,
+    business: Stats
+  }
   transactions: Transaction[];
 }
-
+interface Stats {
+  persent: number,
+  amount: number
+}
 const initialState: DataState = {
   transactions: [],
+  stats: {
+    client: {
+      persent: 0,
+      amount: 0
+    },
+    business: {
+      persent: 0,
+      amount: 0
+    },
+  },
+  loading: {
+    transactions: false,
+    stats: false,
+  }
 };
 
 export const dataReducer = (state = initialState, action: any): DataState => {
@@ -15,10 +40,42 @@ export const dataReducer = (state = initialState, action: any): DataState => {
         ...state,
         transactions: action.payload,
       };
-    case 'SET_APP_NOT_LOADING':
+    case 'SET_STATS':
       return {
         ...state,
-        transactions: action.payload,
+        stats: action.payload,
+      };
+    case 'SET_LOADING_TRANSACTIONS':
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          transactions: true,
+        }
+      };
+    case 'SET_NOT_LOADING_TRANSACTIONS':
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          transactions: false,
+        }
+      };
+    case 'SET_LOADING_STATS':
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          stats: true,
+        }
+      };
+    case 'SET_NOT_LOADING_STATS':
+      return {
+        ...state,
+        loading: {
+          ...state.loading,
+          stats: false,
+        }
       };
     default:
       return state;

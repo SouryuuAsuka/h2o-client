@@ -6,6 +6,7 @@ export function* rootSaga() {
     helloSaga(),
     watchGetUser(),
     watchGetTransactions(),
+    watchGetStats(),
   ])
 }
 
@@ -67,12 +68,56 @@ export const setTransactions = (data: any) => {
   return { type: 'SET_DATA', payload: data }
 }
 
+const setLoadingTransactions = () => {
+  return { type: 'SET_LOADING_TRANSACTIONS' }
+};
+
+const setNotLoadingTransactions = () => {
+  return { type: 'SET_NOT_LOADING_TRANSACTIONS' }
+};
+
+const setLoadingStats = () => {
+  return { type: 'SET_LOADING_STATS' }
+};
+
+const setNotLoadingStats = () => {
+  return { type: 'SET_NOT_LOADING_STATS' }
+};
 function* watchGetTransactions(): any {
   yield throttle(1000, 'GET_DATA', getDataAsync)
+};
+const setStats = (data: any) => {
+  return { type: 'SET_STATS', payload: data }
 }
-export function* getDataAsync(action: any): any {
-  console.log(JSON.stringify(action));
+export const genStats = () => {
+  return { type: 'GEN_STATS' }
+};
+function* getDataAsync(action: any): any {
+  yield put(setLoadingTransactions());
   const response: any = yield call(Api.get, '/transactions?i='+action.interval, { headers: { Authorization: 'Bearer ' + localStorage.getItem('accessToken') } });
   const data = response?.data?.data;
   yield put(setTransactions(data));
+  yield put(setNotLoadingTransactions());
+}
+function* watchGetStats(): any {
+  yield throttle(1000, 'GEN_STATS', genStatsAsync)
+}
+function* genStatsAsync(action: any): any {
+  yield put(setNotLoadingStats());
+  const base =8000000;
+  const busRand = (Math.random()-0.5)*2;
+  const cliRand = (Math.random()-0.5)*2;
+  console.log("cliRand - "+cliRand+' persent '+Math.floor(cliRand*2000)/10)
+  const data = {
+    client:{
+      persent:Math.floor(cliRand*1000)/10,
+      amount: Math.floor(base*cliRand),
+    },
+    business:{
+      persent:Math.floor(busRand*1000)/10,
+      amount:Math.floor(base*busRand),
+    }
+  }
+  yield put(setStats(data));
+  yield put(setLoadingStats());
 }

@@ -1,5 +1,5 @@
 body {
-  --background-primary: #30898a;
+  --background-primary: #54D3C2;
   --background-primary-hovered: #4ca8aa;
   --background-gradient: linear-gradient(180deg, #54D3C2 0%, #30898A 100%);
 }
@@ -39,6 +39,8 @@ body.dark {
 * {
   border: none;
   color: var(--element-text);
+  transition-duration: 0.6s;
+  transition-property: background-color, color;
 }
 
 *:focus-visible {
@@ -59,6 +61,7 @@ body {
 @import './components/popups/loginPopup';
 @import './pages/loading';
 @import './pages/reports/company';
+@import './components/elements/spinner';
 
 body {
   margin: 0;
@@ -68,6 +71,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background);
+  overflow: hidden;
 }
 
 code {
@@ -92,6 +96,21 @@ button {
   border: none;
 }
 
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+
 main {
   width: 100%;
   min-height: 100%;
@@ -104,9 +123,12 @@ main {
   background-color: var(--background-element);
   height: calc(100% - 120px);
   border-radius: 40px 40px 0 0;
+  height: calc(100% - 225px);
+  overflow-y: scroll;
 
   &__container {
     padding: 40px;
+
   }
 
   h1 {
@@ -152,13 +174,43 @@ main {
   border-radius: 40px;
   padding: 20px;
 
-  &__container {
-    width: calc(100% - 40px);
-  }
+  &__container {}
 
   &__header {
     display: flex;
     justify-content: space-between;
+  }
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      background: #54d3c223;
+    }
+
+    &.fail {
+      &:hover {
+        background: #fc5c6417;
+      }
+    }
+  }
+
+  &.active {
+    background: var(--background-primary);
+    &:hover {
+      background: #91ebdf;
+    }
+    & * {
+      color: var(--element-text-light)
+    }
+
+    &.fail {
+      background: #e0545bbc;
+      &:hover {
+        background: #de7378bc;
+      }
+    }
+
   }
 
   &__nav {

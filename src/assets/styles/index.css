@@ -1,5 +1,5 @@
 body {
-  --background-primary: #30898a;
+  --background-primary: #54D3C2;
   --background-primary-hovered: #4ca8aa;
   --background-gradient: linear-gradient(180deg, #54D3C2 0%, #30898A 100%);
 }
@@ -39,6 +39,8 @@ body.dark {
 * {
   border: none;
   color: var(--element-text);
+  transition-duration: 0.6s;
+  transition-property: background-color, color;
 }
 
 *:focus-visible {
@@ -159,6 +161,7 @@ header {
 .header__nav_panel_item {
   margin: 0 10px;
   color: var(--element-text-secondary);
+  white-space: nowrap;
 }
 .header__nav_panel_item.active {
   color: var(--element-text);
@@ -282,7 +285,65 @@ header {
   width: 80px;
   height: 80px;
 }
-.loading__spinner div {
+
+.company__chart {
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.company__summary {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0;
+}
+.company__summary > div {
+  width: 100%;
+  margin: 0 20px;
+}
+.company__summary > div:first-child {
+  margin-left: 0;
+}
+.company__summary > div:last-child {
+  margin-right: 0;
+}
+.company__summary_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
+}
+.company__summary_stat {
+  width: 50%;
+  padding: 10px;
+  border-radius: 40px;
+  text-align: center;
+  margin-bottom: 10px;
+  background: rgba(252, 92, 101, 0.1490196078);
+}
+.company__summary_sum {
+  font-size: 30px;
+  margin: 10px 0;
+}
+.company__summary_subtitle {
+  font-size: 16px;
+}
+
+.card.fail .company__summary_stat {
+  background: rgba(252, 92, 101, 0.1490196078);
+}
+.card.success .company__summary_stat {
+  background: rgba(84, 211, 194, 0.1490196078);
+}
+
+.card.active.fail .company__summary_stat {
+  background: #ff858b;
+}
+.card.active.success .company__summary_stat {
+  background: rgba(248, 248, 248, 0.2509803922);
+}
+
+.spinner {
   box-sizing: border-box;
   display: block;
   position: absolute;
@@ -294,15 +355,16 @@ header {
   animation: spinner-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   border-color: var(--element-active) transparent transparent transparent;
 }
-.loading__spinner div:nth-child(1) {
+.spinner:nth-child(1) {
   animation-delay: -0.45s;
 }
-.loading__spinner div:nth-child(2) {
+.spinner:nth-child(2) {
   animation-delay: -0.3s;
 }
-.loading__spinner div:nth-child(3) {
+.spinner:nth-child(3) {
   animation-delay: -0.15s;
 }
+
 @keyframes spinner-ring {
   0% {
     transform: rotate(0deg);
@@ -311,13 +373,13 @@ header {
     transform: rotate(360deg);
   }
 }
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background);
+  overflow: hidden;
 }
 
 code {
@@ -340,6 +402,21 @@ button {
   border: none;
 }
 
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000000;
+}
+
 main {
   width: 100%;
   min-height: 100%;
@@ -352,6 +429,8 @@ main {
   background-color: var(--background-element);
   height: calc(100% - 120px);
   border-radius: 40px 40px 0 0;
+  height: calc(100% - 225px);
+  overflow-y: scroll;
 }
 .main__container {
   padding: 40px;
@@ -394,12 +473,33 @@ main {
   border-radius: 40px;
   padding: 20px;
 }
-.card__container {
-  width: calc(100% - 40px);
-}
 .card__header {
   display: flex;
   justify-content: space-between;
+}
+.card.clickable {
+  cursor: pointer;
+}
+.card.clickable:hover {
+  background: rgba(84, 211, 194, 0.137254902);
+}
+.card.clickable.fail:hover {
+  background: rgba(252, 92, 100, 0.0901960784);
+}
+.card.active {
+  background: var(--background-primary);
+}
+.card.active:hover {
+  background: #91ebdf;
+}
+.card.active * {
+  color: var(--element-text-light);
+}
+.card.active.fail {
+  background: rgba(224, 84, 91, 0.737254902);
+}
+.card.active.fail:hover {
+  background: rgba(222, 115, 120, 0.737254902);
 }
 .card__nav {
   display: flex;

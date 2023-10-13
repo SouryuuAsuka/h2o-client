@@ -123,6 +123,7 @@ header {
       &_item {
         margin: 0 10px;
         color: var(--element-text-secondary);
+        white-space: nowrap;
 
         &.active {
           color: var(--element-text);
