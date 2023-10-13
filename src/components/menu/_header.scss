@@ -74,6 +74,10 @@ header {
     flex-direction: row;
     padding: 3px 0;
 
+    div{
+      margin-right: 10px;
+    }
+
     &_name {
       display: flex;
       align-items: center;

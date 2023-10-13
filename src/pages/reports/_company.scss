@@ -11,6 +11,15 @@
     justify-content: space-between;
     margin: 40px 0;
 
+    &_spinner {
+      width: -webkit-fill-available;
+      height: -webkit-fill-available;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80px;
+    }
+
     &>div {
       width: 100%;
       margin: 0 20px;
@@ -29,6 +38,7 @@
       flex-direction: column;
       align-items: center;
       margin: 10px 0;
+      min-height: 80px;
     }
 
     &_stat {
@@ -50,10 +60,51 @@
     }
   }
 
-  &__problems{
+  &__problems {
     margin: 20px 0;
+
+    &_item {
+      display: flex;
+      margin-bottom: 15px;
+
+      &_image {
+
+        text-align: center;
+
+        &_icon {
+          border-radius: 50%;
+          background: #F7B731;
+          width: 30px;
+          height: 30px;
+          color: var(--element-text-light);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: 700;
+          margin-right: 10px;
+
+          &.warning {
+            background: #FC5C65;
+          }
+        }
+
+      }
+
+      &_body {
+        &_title {
+          font-size: 14px;
+          font-weight: 300;
+        }
+
+        &_amount {}
+      }
+
+    }
+
+
   }
 }
+
 
 .card {
   &.fail {
@@ -68,6 +119,7 @@
     }
   }
 }
+
 .card.active {
   &.fail {
     .company__summary_stat {

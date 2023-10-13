@@ -246,47 +246,68 @@ export default function ReportsCompany() {
           <div className='company__summary'>
             <div className={"card clickable " + (searchParams.get('g') === 'all' ? 'active' : '') + ' ' + ((stats.business.persent * 10 + stats.client.persent * 10) / 20 > 0 ? 'success' : 'fail')} onClick={() => handleSetParams('g', 'all')}>
               <div className="card__container">
-                <div className='company__summary_body'>
-                  <div className='company__summary_stat ' >
-                    {(stats.business.persent * 10 + stats.client.persent * 10) / 20} %
-                  </div>
-                  <div className='company__summary_sum'>
-                    ₽  {numberWithSpaces(stats.business.amount + stats.client.amount)}
-                  </div>
-                  <div className='company__summary_subtitle'>
-                    Итоги
-                  </div>
-                </div>
+                {
+                  loading.stats
+                    ? <div className='company__summary_body'>
+                      <div className='company__summary_stat ' >
+                        {(stats.business.persent * 10 + stats.client.persent * 10) / 20} %
+                      </div>
+                      <div className='company__summary_sum'>
+                        ₽  {numberWithSpaces(stats.business.amount + stats.client.amount)}
+                      </div>
+                      <div className='company__summary_subtitle'>
+                        Итоги
+                      </div>
+                    </div>
+                    : <div className='company__summary_spinner'>
+                      <Spinner />
+                    </div>
+                }
+
               </div>
             </div>
             <div className={"card clickable " + (searchParams.get('g') === 'cli' ? 'active' : '') + ' ' + (stats.business.persent > 0 ? 'success' : 'fail')} onClick={() => handleSetParams('g', 'cli')}>
               <div className="card__container">
-                <div className='company__summary_body'>
-                  <div className='company__summary_stat'>
-                    {stats.business.persent} %
-                  </div>
-                  <div className='company__summary_sum'>
-                    ₽  {numberWithSpaces(stats.business.amount)}
-                  </div>
-                  <div className='company__summary_subtitle'>
-                    B2B
-                  </div>
-                </div>
+                {
+                  loading.stats
+                    ?
+                    <div className='company__summary_body'>
+                      <div className='company__summary_stat'>
+                        {stats.business.persent} %
+                      </div>
+                      <div className='company__summary_sum'>
+                        ₽  {numberWithSpaces(stats.business.amount)}
+                      </div>
+                      <div className='company__summary_subtitle'>
+                        B2B
+                      </div>
+                    </div>
+                    : <div className='company__summary_spinner'>
+                      <Spinner />
+                    </div>
+                }
               </div>
             </div>
             <div className={"card clickable " + (searchParams.get('g') === 'bus' ? 'active' : '') + ' ' + (stats.client.persent > 0 ? 'success' : 'fail')} onClick={() => handleSetParams('g', 'bus')}>
               <div className="card__container">
-                <div className='company__summary_body'>
-                  <div className={'company__summary_stat'}>
-                    {stats.client.persent} %
-                  </div>
-                  <div className='company__summary_sum'>
-                    ₽  {numberWithSpaces(stats.client.amount)}
-                  </div>
-                  <div className='company__summary_subtitle'>
-                    B2C
-                  </div>
-                </div>
+                {
+                  loading.stats
+                    ?
+                    <div className='company__summary_body'>
+                      <div className={'company__summary_stat'}>
+                        {stats.client.persent} %
+                      </div>
+                      <div className='company__summary_sum'>
+                        ₽  {numberWithSpaces(stats.client.amount)}
+                      </div>
+                      <div className='company__summary_subtitle'>
+                        B2C
+                      </div>
+                    </div>
+                    : <div className='company__summary_spinner'>
+                      <Spinner />
+                    </div>
+                }
               </div>
             </div>
           </div>
@@ -331,20 +352,26 @@ export default function ReportsCompany() {
                 </div>
                 <div className="card__body">
                   {
-                    problems.map((pr) => (
-                      <div className='company__problems_item'>
-                        <div className='company__problems_item_image'>
-                        </div>
-                        <div className='company__problems_item_body'>
-                          <div className='company__problems_item_body_title'>
-                            {pr.title}
+                    problems.map((pr) => {
+                      const status = pr.amount > 50000 ? 'warning' : '';
+                      return (
+                        <div className='company__problems_item'>
+                          <div className={'company__problems_item_image'}>
+                            <div className={'company__problems_item_image_icon ' + status}>
+                              !
+                            </div>
                           </div>
-                          <div className='company__problems_item_body_amount'>
-                            ₽ {pr.amount}
+                          <div className='company__problems_item_body'>
+                            <div className='company__problems_item_body_title'>
+                              {pr.title}
+                            </div>
+                            <div className='company__problems_item_body_amount'>
+                              ₽ {numberWithSpaces(pr.amount)}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))
+                      )
+                    })
                   }
                 </div>
               </div>

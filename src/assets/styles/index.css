@@ -123,6 +123,9 @@ header {
   flex-direction: row;
   padding: 3px 0;
 }
+.header__profile div {
+  margin-right: 10px;
+}
 .header__profile_name {
   display: flex;
   align-items: center;
@@ -297,6 +300,14 @@ header {
   justify-content: space-between;
   margin: 40px 0;
 }
+.company__summary_spinner {
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80px;
+}
 .company__summary > div {
   width: 100%;
   margin: 0 20px;
@@ -312,6 +323,7 @@ header {
   flex-direction: column;
   align-items: center;
   margin: 10px 0;
+  min-height: 80px;
 }
 .company__summary_stat {
   width: 50%;
@@ -331,7 +343,32 @@ header {
 .company__problems {
   margin: 20px 0;
 }
-
+.company__problems_item {
+  display: flex;
+  margin-bottom: 15px;
+}
+.company__problems_item_image {
+  text-align: center;
+}
+.company__problems_item_image_icon {
+  border-radius: 50%;
+  background: #F7B731;
+  width: 30px;
+  height: 30px;
+  color: var(--element-text-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  margin-right: 10px;
+}
+.company__problems_item_image_icon.warning {
+  background: #FC5C65;
+}
+.company__problems_item_body_title {
+  font-size: 14px;
+  font-weight: 300;
+}
 .card.fail .company__summary_stat {
   background: rgba(252, 92, 101, 0.1490196078);
 }
@@ -438,10 +475,10 @@ main {
   padding: 40px 0;
 }
 .main h1 {
-  margin: 20px 0 0 40px;
+  margin: 0 0 0 40px;
 }
 .main__body {
-  margin: 40px 0;
+  margin: 0 0 40px 0;
   display: flex;
 }
 .main__body_left {
@@ -488,6 +525,7 @@ main {
 .card__container {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 .card__header {
   display: flex;
