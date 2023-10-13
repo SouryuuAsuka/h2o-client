@@ -328,6 +328,9 @@ header {
 .company__summary_subtitle {
   font-size: 16px;
 }
+.company__problems {
+  margin: 20px 0;
+}
 
 .card.fail .company__summary_stat {
   background: rgba(252, 92, 101, 0.1490196078);
@@ -433,13 +436,22 @@ main {
   overflow-y: scroll;
 }
 .main__container {
-  padding: 40px;
+  padding: 40px 0;
 }
 .main h1 {
-  margin-top: 0;
+  margin: 20px 0 0 40px;
 }
 .main__body {
   margin: 40px 0;
+  display: flex;
+}
+.main__body_left {
+  margin: 0 20px 0 40px;
+  width: 70%;
+}
+.main__body_right {
+  margin: 20px 40px 0 20px;
+  width: 30%;
 }
 
 #root {
@@ -472,6 +484,10 @@ main {
   background-color: var(--background);
   border-radius: 40px;
   padding: 20px;
+}
+.card__container {
+  display: flex;
+  flex-direction: column;
 }
 .card__header {
   display: flex;

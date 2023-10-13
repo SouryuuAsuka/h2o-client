@@ -6,7 +6,8 @@ export function* rootSaga() {
     helloSaga(),
     watchGetUser(),
     watchGetTransactions(),
-    watchGetStats(),
+    watchGenStats(),
+    watchGenProblems(),
   ])
 }
 
@@ -53,7 +54,7 @@ export function* getUserAsync(): any {
     }
     yield put(setUser(user));
   } catch {
-    
+
   } finally {
     yield put(setAppNotLoading());
   }
@@ -89,35 +90,69 @@ function* watchGetTransactions(): any {
 const setStats = (data: any) => {
   return { type: 'SET_STATS', payload: data }
 }
-export const genStats = () => {
-  return { type: 'GEN_STATS' }
-};
+
 function* getDataAsync(action: any): any {
   yield put(setLoadingTransactions());
-  const response: any = yield call(Api.get, '/transactions?i='+action.interval, { headers: { Authorization: 'Bearer ' + localStorage.getItem('accessToken') } });
+  const response: any = yield call(Api.get, '/transactions?i=' + action.interval, { headers: { Authorization: 'Bearer ' + localStorage.getItem('accessToken') } });
   const data = response?.data?.data;
   yield put(setTransactions(data));
   yield put(setNotLoadingTransactions());
 }
-function* watchGetStats(): any {
+function* watchGenStats(): any {
   yield throttle(1000, 'GEN_STATS', genStatsAsync)
 }
+export const genStats = () => {
+  return { type: 'GEN_STATS' }
+};
 function* genStatsAsync(action: any): any {
   yield put(setNotLoadingStats());
-  const base =8000000;
-  const busRand = (Math.random()-0.5)*2;
-  const cliRand = (Math.random()-0.5)*2;
-  console.log("cliRand - "+cliRand+' persent '+Math.floor(cliRand*2000)/10)
+  const base = 8000000;
+  const busRand = (Math.random() - 0.5) * 2;
+  const cliRand = (Math.random() - 0.5) * 2;
+  console.log("cliRand - " + cliRand + ' persent ' + Math.floor(cliRand * 2000) / 10)
   const data = {
-    client:{
-      persent:Math.floor(cliRand*1000)/10,
-      amount: Math.floor(base*cliRand),
+    client: {
+      persent: Math.floor(cliRand * 1000) / 10,
+      amount: Math.floor(base * cliRand),
     },
-    business:{
-      persent:Math.floor(busRand*1000)/10,
-      amount:Math.floor(base*busRand),
+    business: {
+      persent: Math.floor(busRand * 1000) / 10,
+      amount: Math.floor(base * busRand),
     }
   }
   yield put(setStats(data));
   yield put(setLoadingStats());
+}
+const setProblems = (data: any) => {
+  return { type: 'SET_PROBLEMS', payload: data }
+}
+function* watchGenProblems(): any {
+  yield throttle(1000, 'GEN_PROBLEMS', genProblemsAsync)
+}
+export const genProblems = () => {
+  return { type: 'GEN_PROBLEMS' }
+};
+function* genProblemsAsync(action: any): any {
+  const base = 70000;
+  const titles = [
+    'Линейный персонал',
+    'Подразделение разовых работ ФОТ',
+    'Бензин (наличные)',
+    'Закупка инвентаря',
+    'Закупка спецодежды/СИЗ',
+    'Ремонт оборудования',
+    'Обслуживание автомобиля',
+    'Форс-мажоры',
+    'Рекламные бюджеты (Блогеры)',
+    'Рекламные бюджеты (Контекст)',
+  ]
+  const data = titles.map((tit) => {
+    const rand = (Math.random() + Math.random()) / 2;
+    return {
+      title: tit,
+      amount: Math.floor((rand * base) + 10000)
+    }
+  })
+
+  yield put(setProblems(data));
 }

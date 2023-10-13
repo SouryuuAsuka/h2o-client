@@ -8,8 +8,13 @@ export interface DataState {
   stats: {
     client: Stats,
     business: Stats
-  }
+  };
+  problems: Problem[];
   transactions: Transaction[];
+}
+interface Problem {
+  title: string;
+  amount: number;
 }
 interface Stats {
   persent: number,
@@ -27,6 +32,7 @@ const initialState: DataState = {
       amount: 0
     },
   },
+  problems: [],
   loading: {
     transactions: false,
     stats: false,
@@ -44,6 +50,11 @@ export const dataReducer = (state = initialState, action: any): DataState => {
       return {
         ...state,
         stats: action.payload,
+      };
+    case 'SET_PROBLEMS':
+      return {
+        ...state,
+        problems: action.payload,
       };
     case 'SET_LOADING_TRANSACTIONS':
       return {
