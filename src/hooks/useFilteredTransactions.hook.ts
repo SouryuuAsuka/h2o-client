@@ -1,7 +1,7 @@
 import { LineData, Transaction } from "@/types"
 import { useMemo } from "react"
 
-export const useFilteredTransactions = (transactions: Transaction[], interval = 'year', group = 'all'): [LineData[], LineData[], LineData[]] => {
+export const useFilteredTransactions = (transactions: Transaction[], interval = 'week', group = 'all'): [LineData[], LineData[], LineData[]] => {
   return useMemo(() => {
     let expanses: LineData[] = [];
     let income: LineData[] = [];
@@ -80,6 +80,7 @@ export const useFilteredTransactions = (transactions: Transaction[], interval = 
           const index = expansesTempDateCollection.indexOf(formatedDate);
           const element = expanses[index];
           expanses[index] = { ...element, y: element.y + tr.amount }
+        } else{
           expansesTempDateCollection.push(formatedDate);
           expanses.push({ x: formatedDate, y: tr.amount });
         }

@@ -25,6 +25,7 @@ export default function ReportsCompany() {
   const stats = useAppSelector((state) => state.data.stats);
   const problems = useAppSelector((state) => state.data.problems);
   const [expanses, income, profits] = useFilteredTransactions(transactions, searchParams.get('i'), searchParams.get('g'));
+
   const handleSetParams = (key: string, value: string) => {
     setSearchParams(params => {
       params.set(key, value);
