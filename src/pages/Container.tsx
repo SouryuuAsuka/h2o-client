@@ -1,7 +1,7 @@
 import { useAppSelector } from "@/hooks";
 import { Outlet, useLocation, useNavigate } from "react-router-dom"
 import Loading from '@/pages/Loading';
-import Panel from '@/components/menu/Panel';
+import Panel from '@/components/Menu/Panel';
 import { LoginPopup } from "@/components";
 import { useEffect } from "react";
 import { useDispatch } from 'react-redux';

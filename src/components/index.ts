@@ -1,2 +1,2 @@
-export * from './menu'
-export * from './popups'
+export * from './Menu'
+export * from './Popups'

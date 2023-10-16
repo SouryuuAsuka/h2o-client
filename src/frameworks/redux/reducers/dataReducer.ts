@@ -13,6 +13,7 @@ export interface DataState {
   transactions: Transaction[];
 }
 interface Problem {
+  id: number;
   title: string;
   amount: number;
 }

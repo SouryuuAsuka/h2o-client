@@ -146,9 +146,10 @@ function* genProblemsAsync(action: any): any {
     'Рекламные бюджеты (Блогеры)',
     'Рекламные бюджеты (Контекст)',
   ]
-  const data = titles.map((tit) => {
+  const data = titles.map((tit, index) => {
     const rand = (Math.random() + Math.random()) / 2;
     return {
+      id: index,
       title: tit,
       amount: Math.floor((rand * base) + 10000)
     }

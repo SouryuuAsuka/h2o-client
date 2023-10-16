@@ -1,4 +1,4 @@
-import { Header } from "@/components/menu";
+import { Header } from "@/components/Menu";
 import Empty from "./Empty";
 
 export default function EmptyIndex() {

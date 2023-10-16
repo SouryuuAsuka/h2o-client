@@ -1,4 +1,4 @@
-import { Header } from "@/components/menu";
+import { Header } from "@/components/Menu";
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
